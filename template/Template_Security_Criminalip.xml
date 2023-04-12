@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.4</version>
+    <template_groups>
+        <template_group>
+            <uuid>20f35a02c8454f3f817625caebe578b3</uuid>
+            <name>templates</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>545d701e0b6b4969b9f51c8a0c7504a2</uuid>
+            <template>Template Security Criminalip</template>
+            <name>Template Security Criminalip</name>
+            <description>https://www.criminalip.io/</description>
+            <groups>
+                <group>
+                    <name>templates</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>8182566818e1409b97539d40d9a1fde8</uuid>
+                    <name>Criminalip: Vulnerabilities CVE stats</name>
+                    <type>TRAP</type>
+                    <key>criminalip.vulnerability.cve.count</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <trends>30d</trends>
+                    <triggers>
+                        <trigger>
+                            <uuid>9d8173a70dc34acd8f50aead668d588c</uuid>
+                            <expression>last(/Template Security Criminalip/criminalip.vulnerability.cve.count)&gt;0</expression>
+                            <name>Criminalip: Vulnerability exposed in {$CRIMINALIP_TARGET_PUBLIC_IP}</name>
+                            <url_name>Check the criminalip service in detail</url_name>
+                            <url>https://www.criminalip.io</url>
+                            <priority>HIGH</priority>
+                            <description>Check out the details at https://www.criminalip.io</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>d19c19efa91f41e7970b43ae197aabdb</uuid>
+                    <name>Criminalip: Vulnerabilities Honypot stats</name>
+                    <type>TRAP</type>
+                    <key>criminalip.vulnerability.honeypot.count</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <trends>30d</trends>
+                    <triggers>
+                        <trigger>
+                            <uuid>22b79df5c7d2442a8482dfde07e42092</uuid>
+                            <expression>last(/Template Security Criminalip/criminalip.vulnerability.honeypot.count)&gt;0</expression>
+                            <name>Criminalip: {$CRIMINALIP_TARGET_PUBLIC_IP} is detected by Honeypot as a threat.</name>
+                            <url_name>Check the criminalip service in detail</url_name>
+                            <url>https://www.criminalip.io</url>
+                            <priority>WARNING</priority>
+                            <description>Check out the details at https://www.criminalip.io</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>aed86a34d2674f80b831f5e8f90cc7e8</uuid>
+                    <name>Criminalip: Vulnerabilities Snort stats</name>
+                    <type>TRAP</type>
+                    <key>criminalip.vulnerability.snort.count</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <trends>30d</trends>
+                    <triggers>
+                        <trigger>
+                            <uuid>7e7bf7ac7c3e49a09e26d74b47f9dbb2</uuid>
+                            <expression>last(/Template Security Criminalip/criminalip.vulnerability.snort.count)&gt;0</expression>
+                            <name>Criminalip: {$CRIMINALIP_TARGET_PUBLIC_IP} is detected by Snort as a threat.</name>
+                            <url_name>Check the criminalip service in detail</url_name>
+                            <url>https://www.criminalip.io</url>
+                            <priority>WARNING</priority>
+                            <description>Check out the details at https://www.criminalip.io</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>21b05b1096ee4cbe84e23d9361aab435</uuid>
+                    <name>Criminalip: Vulnerabilities Webcam stats</name>
+                    <type>TRAP</type>
+                    <key>criminalip.vulnerability.webcam.count</key>
+                    <delay>0</delay>
+                    <history>30d</history>
+                    <trends>30d</trends>
+                    <status>DISABLED</status>
+                    <triggers>
+                        <trigger>
+                            <uuid>16f61a42488d421a9f4aa4409bac4a43</uuid>
+                            <expression>last(/Template Security Criminalip/criminalip.vulnerability.webcam.count)&gt;0</expression>
+                            <name>Criminalip: {$CRIMINALIP_TARGET_PUBLIC_IP} has exposed the webcam externally.</name>
+                            <url_name>Check the criminalip service in detail</url_name>
+                            <url>https://www.criminalip.io</url>
+                            <priority>AVERAGE</priority>
+                            <description>Check out the details at https://www.criminalip.io</description>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>6b41e49528ce4adfa3e988f970776f28</uuid>
+                    <name>Criminalip: Get Criminalip API</name>
+                    <key>get.criminalip.api[{$CRIMINALIP_TARGET_PUBLIC_IP}]</key>
+                    <delay>1d</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                </item>
+                <item>
+                    <uuid>29e1c4bc925a4d069590a03c07e48c86</uuid>
+                    <name>Criminalip: Sender Criminalip Malicious</name>
+                    <key>sender.criminalip.malicious.count</key>
+                    <delay>60s</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <uuid>06912413798f46dc94fa5efb68bc1aa4</uuid>
+                    <name>LLD Current Opened Ports</name>
+                    <key>lld.criminalip.ports</key>
+                    <delay>60s</delay>
+                    <lifetime>7d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>359bc59c40ec4a4aa89b4246b416e3ba</uuid>
+                            <name>Criminalip: {#SOCKEY_TYPE} {#PORT} ({#PROTOCOL})</name>
+                            <key>check.criminalip.port[{#SOCKEY_TYPE}, {#PORT}]</key>
+                            <history>7d</history>
+                            <trends>7d</trends>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>544721e66bc4485da4bbb959e4995526</uuid>
+                                    <expression>last(/Template Security Criminalip/check.criminalip.port[{#SOCKEY_TYPE}, {#PORT}])&gt;0</expression>
+                                    <name>Criminalip: Vulnerability exposed in {#SOCKEY_TYPE} {#PORT} ({#PROTOCOL}).</name>
+                                    <url_name>Check the criminalip service in detail</url_name>
+                                    <url>https://www.criminalip.io</url>
+                                    <priority>HIGH</priority>
+                                    <description>Check out the details at https://www.criminalip.io</description>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$CRIMINALIP_TARGET_PUBLIC_IP}</macro>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>21cc481cb1b247c997fcda05db25ee64</uuid>
+            <name>Criminalip: malicious info</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>199C0D</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Security Criminalip</host>
+                        <key>criminalip.vulnerability.honeypot.count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>F63100</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Security Criminalip</host>
+                        <key>criminalip.vulnerability.snort.count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>2774A4</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Security Criminalip</host>
+                        <key>criminalip.vulnerability.cve.count</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <drawtype>BOLD_LINE</drawtype>
+                    <color>F7941D</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template Security Criminalip</host>
+                        <key>criminalip.vulnerability.webcam.count</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
